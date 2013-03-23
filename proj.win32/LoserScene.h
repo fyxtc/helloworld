@@ -8,6 +8,9 @@ public:
 	static cocos2d::CCScene* scene();
 	virtual bool init();
 	CREATE_FUNC(LoserScene);
+
+private:
+	void loadNewGame(CCObject* sender);
 };
 
 #endif

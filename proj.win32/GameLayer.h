@@ -38,9 +38,13 @@ public:
 		return tankSprite;
 	}
 
-
+	void playHitBrickSound();
+	void playHitTankSound();
+	void playFireSound();
 	
 	void doRandomAction(float dt);
+
+
 
 	const static int ContorllerLayerTag = 99;
 private:
@@ -49,7 +53,6 @@ private:
 	CCTMXTiledMap* map;
 	TankSprite* tankSprite;
 	CCArray* enemyList;
-
 
 	void setViewpointCenter(CCPoint pos);
 

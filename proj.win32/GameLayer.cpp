@@ -282,6 +282,8 @@ bool GameLayer::init(){
 		audioEngine->preloadEffect("hit.wav");
 		audioEngine->preloadEffect("Gunfire.wav");
 		audioEngine->preloadEffect("Bang.wav");
+		//audioEngine->preloadEffect("home.wav");
+		audioEngine->playBackgroundMusic("bgm.wav", true);
 		
 
 		bRet = true;
@@ -356,6 +358,23 @@ void GameLayer::keepInBound( CCPoint &tankPos, CCSize &size )
 	tankPos.x = MIN(tankPos.x, map->getMapSize().width * map->getTileSize().width - size.width / 2);
 	tankPos.y = MIN(tankPos.y, map->getMapSize().height * map->getTileSize().height - size.height / 2);
 }
+
+void GameLayer::playHitBrickSound()
+{
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("hit.wav");
+}
+
+void GameLayer::playHitTankSound()
+{
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("Bang.wav");
+}
+
+void GameLayer::playFireSound()
+{
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("Gunfire.wav");
+}
+
+
 
 
 

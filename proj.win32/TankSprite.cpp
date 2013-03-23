@@ -123,11 +123,15 @@ TankSprite* TankSprite::createWithLayer(GameLayer* layer, const char* image){
 
 void TankSprite::onFire(CCObject* sender){
 	//gameLayer->getFireButton()->setVisible(false);
-
+	
+	
 	if(firing){
 		return;
 	}
 	firing = true;
+	if(!isEnemy){
+		gameLayer->playFireSound();
+	}
 	
 	CCPoint tankPos = this->getPosition();
 	CCSize tankSize = this->getTexture()->getContentSize();
@@ -212,6 +216,9 @@ void TankSprite::hitEnemy( CCPoint bulletPos )
 			tankPos = enemy->getPosition();
 			CCRect rect = CCRectMake(tankPos.x - tankSize.width, tankPos.y - tankSize.height, tankSize.width, tankSize.height);
 			if(rect.containsPoint(bulletPos)){
+
+				gameLayer->playHitTankSound();
+
 				enemy->stopAllActions();
 				bulletSprite->setVisible(false);
 				bulletSprite->stopAllActions();
@@ -245,9 +252,11 @@ void TankSprite::hitBrick( CCPoint bulletPos )
 	CCPoint coordPos = gameLayer->tileCoordForPosition(bulletPos);
 	unsigned int gid = gameLayer->getForeground()->tileGIDAt(coordPos);
 	if(gid == 2){
-
 		//this->explodeAt(bulletPos);
-
+		if(!isEnemy){
+			gameLayer->playHitBrickSound();
+		}
+		
 		bulletSprite->stopAllActions();
 		bulletSprite->setVisible(false);
 		gameLayer->getForeground()->setTileGID(4, coordPos);
@@ -304,7 +313,7 @@ void TankSprite::hitPlayer( CCPoint bulletPos )
 		bulletSprite->stopAllActions();
 		bulletSprite->setVisible(false);
 		explodeAt(bulletPos);
-		
+		gameLayer->playHitTankSound();
 
 		//千万不能用this，必需是player！！！否则取到的HP都是调用hitPlayer方法的敌人的
 		--player->playerHP;
@@ -326,6 +335,7 @@ void TankSprite::hitHome(CCPoint bulletPos)
 	CCPoint coordPos = gameLayer->tileCoordForPosition(bulletPos);
 	unsigned int gid = gameLayer->getForeground()->tileGIDAt(coordPos);
 	if(gid == 3){
+		
 		CCPoint aroundPos = ccp(0, 0);
 		if(state == kUP || state == kDown){
 			//left
@@ -380,6 +390,7 @@ void TankSprite::explodeAt(CCPoint explodePoint)
 
 void TankSprite::loadLoserScene()
 {
+	gameLayer->playHitTankSound();
 	CCDirector::sharedDirector()->replaceScene(LoserScene::scene());
 }
 

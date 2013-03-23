@@ -69,6 +69,7 @@ public:
 	void setPlayerHP(int hp){
 		this->playerHP = hp;
 	}
+	
 
 private:
 	GameLayer* gameLayer;
@@ -82,6 +83,7 @@ private:
 	const static int gameHeight = 600;
 	const static int fireFrequency = 4;
 	int playerHP;
+	
 
 };
 

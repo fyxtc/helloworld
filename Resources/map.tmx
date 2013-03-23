@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="38" height="30" tilewidth="20" tileheight="20">
+ <tileset firstgid="1" name="tileSet" tilewidth="20" tileheight="20">
+  <image source="../../Tank/Resources/tileSet.PNG" width="80" height="20"/>
+  <tile id="1">
+   <properties>
+    <property name="Brick" value="True"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="Home" value="True"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Background" width="38" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztw8EJAAAMA6F7ZP+ZO0dBwVVTVVVV9c0D4zIR0Q==
+  </data>
+ </layer>
+ <layer name="Foreground" width="38" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztlMEKACEIBa39/3/eS6cockNxcD3MQYLXwLOaiLSicKIPaDPF429eXnlZvag90rxOZPPS5t/eG4W316nX3fnXXO0+0b2oPdK8KP+odp+iZ4pHecV6eb2rrF5zjnWvt6wyLHKtvJ5Bdq8XA6MGBQ==
+  </data>
+ </layer>
+</map>
